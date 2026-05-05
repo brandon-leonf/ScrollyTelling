@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Brandon Leon-Flores — Web → Cloud</title>
+<meta name="description" content="Senior IT student at NJIT transitioning from web development toward cloud and networking infrastructure." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <a href="index.html" class="topbar__brand">brandon.lf</a>
+  <nav class="topbar__nav" aria-label="Main">
+    <a href="index.html" class="active">home</a>
+    <a href="why-cloud.html">why cloud</a>
+    <a href="projects.html">projects</a>
+  </nav>
+</header>
+
+<section class="intro">
+  <div class="intro__meta">
+    <span>portfolio</span>
+    <span>scrollytelling </span>
+    <span>v1.0</span>
+  </div>
+  <h1>Web Designer<br />transitioning to cloud.</h1>
+  <p style="color: var(--text-dim); max-width: 60ch;">
+    Senior at NJIT. Build Websites at a marketing agency. Two certs and a degree away from a cloud / networking role. Scroll to see the path.
+  </p>
+</section>
+
+<section class="scrolly" aria-label="Story sequence">
+
+  <!-- Sticky visual column -->
+  <div class="scrolly__sticky">
+    <div class="scrolly__visual">
+
+      <!-- Step 1: terminal whoami -->
+      <div class="visual-state" data-state="1">
+        <div class="terminal">
+          <div class="terminal__line"><span class="terminal__prompt">brandon@local:~$</span> whoami</div>
+          <div class="terminal__line">brandon-leon-flores</div>
+          <div class="terminal__line"><span class="terminal__comment"># senior, njit, b.s. information technology</span></div>
+          <div class="terminal__line"><span class="terminal__comment"># expected: dec 2026</span></div>
+          <div class="terminal__line">&nbsp;</div>
+          <div class="terminal__line"><span class="terminal__prompt">brandon@local:~$</span> <span class="terminal__cursor"></span></div>
+        </div>
+      </div>
+
+      <!-- Step 2: stack -->
+      <div class="visual-state" data-state="2">
+        <div class="stack" aria-label="Tech stack focus">
+          <div class="stack__layer">Frontend &nbsp;·&nbsp; HTML / CSS / JS</div>
+          <div class="stack__layer">Backend &nbsp;·&nbsp; PHP / WordPress / Spring</div>
+          <div class="stack__layer highlight">Operating System &nbsp;·&nbsp; Linux / sysadmin</div>
+          <div class="stack__layer highlight">Network &nbsp;·&nbsp; DNS / routing / wireless</div>
+          <div class="stack__layer highlight">Cloud &nbsp;·&nbsp; AWS (in progress)</div>
+        </div>
+      </div>
+
+      <!-- Step 3: production server -->
+      <div class="visual-state" data-state="3">
+        <div class="terminal">
+          <div class="terminal__line"><span class="terminal__prompt">user@prod-www:~$</span> crontab -l</div>
+          <div class="terminal__line">0 3 * * *  /usr/local/bin/backup.sh</div>
+          <div class="terminal__line">15 * * * * /usr/local/bin/cache-clear.sh</div>
+          <div class="terminal__line">&nbsp;</div>
+          <div class="terminal__line"><span class="terminal__prompt">user@prod-www:~$</span> dig client.com MX</div>
+          <div class="terminal__line"><span class="terminal__comment">;; ANSWER SECTION:</span></div>
+          <div class="terminal__line">client.com. 3600 IN MX 10 mail.client.com.</div>
+          <div class="terminal__line">&nbsp;</div>
+          <div class="terminal__line"><span class="terminal__prompt">user@prod-www:~$</span> <span class="terminal__cursor"></span></div>
+        </div>
+      </div>
+
+      <!-- Step 4: certs -->
+      <div class="visual-state" data-state="4">
+        <div class="certs">
+          <div class="cert">
+            <div class="cert__name">AWS SAA</div>
+            <div class="cert__org">Solutions Architect Associate</div>
+            <div class="cert__status">in progress</div>
+            <div class="cert__bar"><div class="cert__bar-fill" style="width: 35%"></div></div>
+          </div>
+          <div class="cert">
+            <div class="cert__name">CCNA</div>
+            <div class="cert__org">Cisco Certified Network Associate</div>
+            <div class="cert__status">in progress</div>
+            <div class="cert__bar"><div class="cert__bar-fill" style="width: 20%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 5: CTA -->
+      <div class="visual-state" data-state="5">
+        <div class="cta-card">
+          <h3>Two ways forward</h3>
+          <p style="color: var(--text-dim); font-size: 13px; margin-bottom: 0;">Pick the one you want to read.</p>
+          <div class="cta-card__links">
+            <a href="why-cloud.html" data-link-to="why-cloud.html">→ The career narrative</a>
+            <a href="projects.html" data-link-to="projects.html">→ One project in detail</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scrolling steps column -->
+  <div class="scrolly__steps">
+
+    <div class="step" id="step-1" data-step="1">
+      <div class="step__num">01</div>
+      <div class="section-label">whoami</div>
+      <h2 class="step__title">Brandon Leon-Flores.</h2>
+      <p class="step__body">Senior at NJIT studying Information Technology. Web developer at a Hazlet, NJ marketing agency. Background in CS coursework before transferring in. Bilingual (EN/ES). Based in Monmouth County.</p>
+    </div>
+
+    <div class="step" id="step-2" data-step="2">
+      <div class="step__num">02</div>
+      <div class="section-label">where_i_work</div>
+      <h2 class="step__title">Currently in the upper layers. Building toward the lower ones.</h2>
+      <p class="step__body">My day job is the frontend and backend layers — HTML, PHP, WordPress, the parts users see. The systems I'm pulled toward are below that: the operating system, the network, the cloud platform that holds it all up. That's the direction this site is documenting.</p>
+    </div>
+
+    <div class="step" id="step-3" data-step="3">
+      <div class="step__num">03</div>
+      <div class="section-label">production_exposure</div>
+      <h2 class="step__title">Real production servers, not tutorials.</h2>
+      <p class="step__body">Through the agency I have actual SSH access to client production servers. DNS records, cron jobs, file permissions, log diagnostics — the work crosses into sysadmin territory regularly. The systems coursework at NJIT (CS 332, IT 340, CS 356) is what makes this five-minute work instead of four-hour panic.</p>
+    </div>
+
+    <div class="step" id="step-4" data-step="4">
+      <div class="step__num">04</div>
+      <div class="section-label">next_milestones</div>
+      <h2 class="step__title">Two certs before December 2026.</h2>
+      <p class="step__body">AWS Solutions Architect Associate and CCNA. Both before graduation. The combination is intentional: cloud platform fluency plus networking fundamentals is the honest profile for someone moving into infrastructure work, not someone bolting "AWS expert" onto a web dev resume.</p>
+    </div>
+
+    <div class="step" id="step-5" data-step="5">
+      <div class="step__num">05</div>
+      <div class="section-label">where_next</div>
+      <h2 class="step__title">Pick a thread.</h2>
+      <p class="step__body">If you want the career narrative — how I got from PHP to cloud — read that. If you want to see what production sysadmin work actually looks like in practice, read the projects page. Both pages use the same scrolling technique you just experienced.</p>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div>brandon-leon-flores · njit · 2026</div>
+  <div>built with vanilla html/css/js · <a href="https://github.com" style="color: var(--text-dim); border: none;">source</a></div>
+</footer>
+
+<script src="/scrolly.js"></script>
+</body>
+</html>

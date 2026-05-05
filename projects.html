@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Projects — Brandon Leon-Flores</title>
+<meta name="description" content="Production sysadmin work at Industry Media — a focused case study." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <a href="index.html" class="topbar__brand">brandon.lf</a>
+  <nav class="topbar__nav" aria-label="Main">
+    <a href="index.html">home</a>
+    <a href="why-cloud.html">why cloud</a>
+    <a href="projects.html" class="active">projects</a>
+  </nav>
+</header>
+
+<section class="intro">
+  <div class="intro__meta">
+    <span>case study</span>
+    <span>industry media</span>
+    <span>ongoing</span>
+  </div>
+  <h1>Production sysadmin, agency edition.</h1>
+  <p style="color: var(--text-dim); max-width: 60ch;">
+    Maintaining live WordPress sites for marketing-agency clients. The work that pulled me from "web dev" toward infrastructure.
+  </p>
+</section>
+
+<section class="scrolly" aria-label="Project case study">
+
+  <div class="scrolly__sticky">
+    <div class="scrolly__visual">
+
+      <!-- Step 1: SSH into prod -->
+      <div class="visual-state" data-state="1">
+        <div class="terminal">
+          <div class="terminal__line"><span class="terminal__prompt">brandon@laptop:~$</span> ssh deploy@prod-www.client.com</div>
+          <div class="terminal__line"><span class="terminal__comment"># welcome to prod. don't break it.</span></div>
+          <div class="terminal__line">Last login: Tue Apr 22 09:14:02 2025</div>
+          <div class="terminal__line">&nbsp;</div>
+          <div class="terminal__line"><span class="terminal__prompt">deploy@prod-www:~$</span> uptime</div>
+          <div class="terminal__line">&nbsp; 09:21:33 up 184 days,  4:12,  1 user,  load 0.18</div>
+          <div class="terminal__line">&nbsp;</div>
+          <div class="terminal__line"><span class="terminal__prompt">deploy@prod-www:~$</span> <span class="terminal__cursor"></span></div>
+        </div>
+      </div>
+
+      <!-- Step 2: DNS records -->
+      <div class="visual-state" data-state="2">
+        <div class="code-block"><span class="com">; client.com — fixing email delivery</span>
+<span class="com">; symptom: outbound mail bouncing</span>
+
+client.com.       3600  IN  <span class="kw">A</span>     <span class="str">192.0.2.45</span>
+client.com.       3600  IN  <span class="kw">MX</span>  10 <span class="str">mail.client.com.</span>
+client.com.       3600  IN  <span class="kw">TXT</span>   <span class="str">"v=spf1 include:_spf.google.com ~all"</span>
+mail.client.com.  3600  IN  <span class="kw">A</span>     <span class="str">192.0.2.46</span>
+
+<span class="com">; root cause: missing MX, SPF mismatch</span>
+<span class="com">; fix time: ~10 min once you can read DNS</span></div>
+      </div>
+
+      <!-- Step 3: cron + perms -->
+      <div class="visual-state" data-state="3">
+        <div class="code-block"><span class="com"># /etc/cron.d/site-maintenance</span>
+<span class="com"># run as the web user, not root</span>
+
+<span class="kw">0 3</span>   * * *  www-data  /usr/local/bin/backup-site.sh
+<span class="kw">15 *</span>  * * *  www-data  /usr/local/bin/clear-cache.sh
+<span class="kw">30 4</span>  * * 0  www-data  /usr/local/bin/log-rotate.sh
+
+<span class="com"># tighten upload dir perms</span>
+<span class="kw">$</span> chown -R www-data:www-data /var/www/site/uploads
+<span class="kw">$</span> find /var/www/site/uploads -type f -exec chmod 644 {} \;
+<span class="kw">$</span> find /var/www/site/uploads -type d -exec chmod 755 {} \;</div>
+      </div>
+
+      <!-- Step 4: summary -->
+      <div class="visual-state" data-state="4">
+        <div class="summary">
+          <div class="section-label">takeaway</div>
+          <h3>What this taught me.</h3>
+          <p>Production servers don't care how clean your code is. They care whether the cron actually ran, whether the permissions actually let the web user write to that directory, whether DNS actually propagated. Same skills, applied at small scale. The cloud version is the same problems with more zeros — and a control plane.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="scrolly__steps">
+
+    <div class="step" id="step-1" data-step="1">
+      <div class="step__num">01</div>
+      <div class="section-label">the_setup</div>
+      <h2 class="step__title">SSH into the server first, fix the bug second.</h2>
+      <p class="step__body">Most of my "web dev" job at the agency starts with SSH. The frontend changes happen on a laptop; the verifying-it-actually-works part happens on the server. That single fact is what made the systems coursework feel directly applicable instead of abstract.</p>
+    </div>
+
+    <div class="step" id="step-2" data-step="2">
+      <div class="step__num">02</div>
+      <div class="section-label">incident_01</div>
+      <h2 class="step__title">When the bug isn't in the code.</h2>
+      <p class="step__body">A client reported outbound email failing. Nothing in the WordPress logs, nothing in the PHP errors. The fix was in DNS — missing MX record, broken SPF. Twenty minutes once you know what to look for; an entire day if you've never read a zone file. CS 356 paid for itself that afternoon.</p>
+    </div>
+
+    <div class="step" id="step-3" data-step="3">
+      <div class="step__num">03</div>
+      <div class="section-label">incident_02</div>
+      <h2 class="step__title">Cron jobs and the principle of least privilege.</h2>
+      <p class="step__body">The previous setup ran maintenance scripts as root and gave the web user permission to overwrite any file under <code>/var/www</code>. Setting up cron correctly under <code>www-data</code> and locking down the upload directory permissions was a small change with a real security delta. Boring work, important work.</p>
+    </div>
+
+    <div class="step" id="step-4" data-step="4">
+      <div class="step__num">04</div>
+      <div class="section-label">why_this_matters</div>
+      <h2 class="step__title">The cloud version is the same problems, bigger.</h2>
+      <p class="step__body">Everything on this page — DNS, cron, permissions, the principle of least privilege — has a direct analog in AWS. Route 53 is DNS. EventBridge is cron. IAM is permissions. The reason the cert path makes sense is that the substrate is already familiar; what changes is the control plane.</p>
+      <p class="step__body" style="margin-top: 16px;">
+        <a href="index.html" data-link-to="index.html">← back to home</a> &nbsp;·&nbsp;
+        <a href="why-cloud.html" data-link-to="why-cloud.html">read the narrative →</a>
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div>brandon-leon-flores · njit · 2026</div>
+  <div>spec-driven scrollytelling demo</div>
+</footer>
+
+<script src="/scrolly.js"></script>
+</body>
+</html>
